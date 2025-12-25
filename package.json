@@ -1,0 +1,41 @@
+{
+  "name": "dobo-sqlite3",
+  "version": "2.2.0",
+  "description": "SQLite3 driver for Dobo",
+  "main": "index.js",
+  "scripts": {
+    "build-doc": "jsdoc -c .jsdoc.conf.json",
+    "test": "mocha"
+  },
+  "type": "module",
+  "bajo": {
+    "type": "plugin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardhi/dobo-sqlite3.git"
+  },
+  "keywords": [
+    "sqlite3",
+    "sql",
+    "dobo",
+    "db",
+    "driver",
+    "bajo",
+    "framework",
+    "modular"
+  ],
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ardhi/dobo-sqlite3/issues"
+  },
+  "homepage": "https://github.com/ardhi/dobo-sqlite3#readme",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "clean-jsdoc-theme": "^4.3.0",
+    "jsdoc-plugin-intersection": "^1.0.4"
+  }
+}
