@@ -99,22 +99,25 @@ async function sqlite3DriverFactory () {
     _reformHistogram ({ type, item, group, aggs }) {
       switch (type) {
         case 'daily': {
-          item.sql = item.sql.replace('*', `strftime('%Y-%m-%d', substr(${group}, 1, 10), 'auto') as id, ${aggs.join(', ')}`)
+          item.sql = item.sql.replace('*', `strftime('%Y-%m-%d', substr(${group}, 1, 10), 'auto') as date, ${aggs.join(', ')}`)
           const start = item.sql.indexOf(' order by ')
           const end = item.sql.indexOf(' limit ')
-          const order = item.sql.slice(start, end)
+          // const order = item.sql.slice(start, end)
           item.sql = item.sql.splice(start, end - start, '')
-          item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto'), strftime('%m', substr(${group}, 1, 10), 'auto'), strftime('%d', substr(${group}, 1, 10), 'auto') ${order} limit `)
+          // item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto'), strftime('%m', substr(${group}, 1, 10), 'auto'), strftime('%d', substr(${group}, 1, 10), 'auto') ${order} limit `)
+          item.sql = item.sql.replace('limit ', 'group by date limit ')
           break
         }
         case 'monthly': {
-          item.sql = item.sql.replace('*', `strftime('%Y-%m', substr(${group}, 1, 10), 'auto') as id, ${aggs.join(', ')}`)
-          item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto'), strftime('%m', substr(${group}, 1, 10), 'auto') limit `)
+          item.sql = item.sql.replace('*', `strftime('%Y-%m', substr(${group}, 1, 10), 'auto') as month, ${aggs.join(', ')}`)
+          // item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto'), strftime('%m', substr(${group}, 1, 10), 'auto') limit `)
+          item.sql = item.sql.replace('limit ', 'group by month limit ')
           break
         }
         case 'annually': {
-          item.sql = item.sql.replace('*', `cast(strftime('%Y', substr(${group}, 1, 10), 'auto') as integer) as id, ${aggs.join(', ')}`)
-          item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto') limit `)
+          item.sql = item.sql.replace('*', `cast(strftime('%Y', substr(${group}, 1, 10), 'auto') as integer) as year, ${aggs.join(', ')}`)
+          // item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto') limit `)
+          item.sql = item.sql.replace('limit ', 'group by year limit ')
           break
         }
       }
