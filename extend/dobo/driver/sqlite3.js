@@ -96,7 +96,11 @@ async function sqlite3DriverFactory () {
       if (fulltexts.length > 0) await client.schema.dropTable(`${model.name}_fts`)
     }
 
-    _reformHistogram ({ type, item, group, aggs }) {
+    _reformHistogram ({ type, item, group, aggregates, field }) {
+      const aggs = []
+      for (const agg of aggregates) {
+        aggs.push(`${agg}(${agg === 'count' ? '*' : field}) as ${agg}`)
+      }
       switch (type) {
         case 'daily': {
           item.sql = item.sql.replace('*', `strftime('%Y-%m-%d', substr(${group}, 1, 10), 'auto') as date, ${aggs.join(', ')}`)
@@ -114,7 +118,7 @@ async function sqlite3DriverFactory () {
           item.sql = item.sql.replace('limit ', 'group by month limit ')
           break
         }
-        case 'annually': {
+        case 'yearly': {
           item.sql = item.sql.replace('*', `cast(strftime('%Y', substr(${group}, 1, 10), 'auto') as integer) as year, ${aggs.join(', ')}`)
           // item.sql = item.sql.replace('limit ', `group by strftime('%Y', substr(${group}, 1, 10), 'auto') limit `)
           item.sql = item.sql.replace('limit ', 'group by year limit ')
