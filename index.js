@@ -13,9 +13,6 @@ async function factory (pkgName) {
    * @class
    */
   class DoboSqlite3 extends this.app.baseClass.Base {
-    static alias = 'dbsqlite3'
-    static dependencies = ['dobo', 'dobo-knex']
-
     constructor () {
       super(pkgName, me.app)
       this.config = {

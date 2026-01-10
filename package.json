@@ -9,7 +9,9 @@
   },
   "type": "module",
   "bajo": {
-    "type": "plugin"
+    "type": "plugin",
+    "alias": "dbsqlite3",
+    "dependencies": ["dobo", "dobo-knex"]
   },
   "repository": {
     "type": "git",
