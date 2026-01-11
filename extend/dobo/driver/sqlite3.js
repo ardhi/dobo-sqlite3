@@ -5,8 +5,8 @@ async function sqlite3DriverFactory () {
   const { uniq } = this.app.lib._
 
   class DoboSqlite3Driver extends DoboKnexDriver {
-    constructor (plugin, options) {
-      super(plugin)
+    constructor (plugin, name, options) {
+      super(plugin, name, options)
       this.dialect = 'sqlite3'
       this.adapter = 'sqlite3'
       this.options = {
