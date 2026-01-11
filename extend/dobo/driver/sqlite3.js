@@ -20,7 +20,7 @@ async function sqlite3DriverFactory () {
       const { getPluginDataDir } = this.app.bajo
       const { isString, isEmpty } = this.app.lib._
       if (!isString(item.filename)) this.plugin.fatal('keyIsRequired%s%s%s', 'filename', this.plugin.t('connection'), item.name, { payload: item })
-      if (item.filename === ':memory:') item.memory = true
+      if (item.filename === ':memory:') this.memory = true
       else {
         let file = item.filename
         if (file.indexOf('/') === -1) {
@@ -34,6 +34,16 @@ async function sqlite3DriverFactory () {
           if (file.indexOf('{tmpDir}') > -1) file = file.replace('{tmpDir}', this.app.bajo.dir.tmp)
         }
         item.filename = file
+      }
+    }
+
+    async createClient (connection) {
+      await super.createClient(connection)
+      if (!this.memory) return
+      const models = this.plugin.getModelsByConnection(connection.name)
+      for (const model of models) {
+        await model.build()
+        await model.loadFixtures()
       }
     }
 
