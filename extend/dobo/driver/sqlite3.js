@@ -37,8 +37,8 @@ async function sqlite3DriverFactory () {
       }
     }
 
-    async createClient (connection) {
-      await super.createClient(connection)
+    async connect (connection, noRebuild) {
+      await super.connect(connection, noRebuild)
       if (!this.memory) return
       const models = this.plugin.getModelsByConnection(connection.name)
       for (const model of models) {
