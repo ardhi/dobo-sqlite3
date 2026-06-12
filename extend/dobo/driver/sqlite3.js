@@ -17,14 +17,13 @@ async function sqlite3DriverFactory () {
     async sanitizeConnection (item) {
       await super.sanitizeConnection(item)
       const { fs } = this.app.lib
-      const { getPluginDataDir } = this.app.bajo
       const { isString, isEmpty } = this.app.lib._
       if (!isString(item.filename)) this.plugin.fatal('keyIsRequired%s%s%s', 'filename', this.plugin.t('connection'), item.name, { payload: item })
       if (item.filename === ':memory:') this.memory = true
       else {
         let file = item.filename
         if (file.indexOf('/') === -1) {
-          file = `${getPluginDataDir('dobo')}/db/${file}`
+          file = `${this.app.getPluginDataDir('dobo')}/db/${file}`
           const ext = path.extname(file)
           if (isEmpty(ext)) file += '.sqlite3'
           fs.ensureDirSync(path.dirname(file))

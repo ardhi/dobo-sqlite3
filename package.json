@@ -1,6 +1,6 @@
 {
   "name": "dobo-sqlite3",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "SQLite3 driver for Dobo",
   "main": "index.js",
   "scripts": {
