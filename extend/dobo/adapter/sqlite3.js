@@ -1,10 +1,10 @@
 import path from 'path'
 
-async function sqlite3DriverFactory () {
-  const { DoboKnexDriver } = this.app.baseClass
+async function sqlite3AdapterFactory () {
+  const { DoboKnexAdapter } = this.app.baseClass
   const { uniq } = this.app.lib._
 
-  class DoboSqlite3Driver extends DoboKnexDriver {
+  class DoboSqlite3Adapter extends DoboKnexAdapter {
     constructor (plugin, name, options) {
       super(plugin, name, options)
       this.dialect = 'sqlite3'
@@ -137,8 +137,8 @@ async function sqlite3DriverFactory () {
     }
   }
 
-  this.app.DoboSqlite3Driver = DoboSqlite3Driver
-  return DoboSqlite3Driver
+  this.app.DoboSqlite3Adapter = DoboSqlite3Adapter
+  return DoboSqlite3Adapter
 }
 
-export default sqlite3DriverFactory
+export default sqlite3AdapterFactory

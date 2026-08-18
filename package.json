@@ -1,7 +1,7 @@
 {
   "name": "dobo-sqlite3",
-  "version": "2.3.0",
-  "description": "SQLite3 driver for Dobo",
+  "version": "2.4.0",
+  "description": "SQLite3 adapter for Dobo",
   "main": "index.js",
   "scripts": {
     "build-doc": "jsdoc -c .jsdoc.conf.json",
@@ -22,7 +22,7 @@
     "sql",
     "dobo",
     "db",
-    "driver",
+    "adapter",
     "bajo",
     "framework",
     "modular"

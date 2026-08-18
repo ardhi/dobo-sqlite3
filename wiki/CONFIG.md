@@ -8,7 +8,7 @@ These SQLite3 connection objects should be used as your **Dobo connection** obje
 | Key Name | Type | Default | Description |
 | ------- | ---- | ----- | ----------- |
 | ```name``` | ```string``` | ```default``` | Connection name |
-| ```type``` | ```string``` || Connection's driver type. See below |
+| ```type``` | ```string``` || Connection's adapter type. See below |
 | ```connection``` | ```object``` || Connection details |
 | &nbsp;&nbsp;&nbsp;&nbsp;```filename``` | ```string``` || Path to database file |
 | &nbsp;&nbsp;&nbsp;&nbsp;```...``` ||| See knex *connection* config |

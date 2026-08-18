@@ -4,7 +4,7 @@
 
 > <br />**Attention**: I do NOT accept any pull request at the moment, thanks! ([Why?](wiki/CONTRIBUTING.md))<br /><br />
 
-SQLite3 driver for [Dobo](https://github.com/ardhi/dobo)
+SQLite3 adapter for [Dobo](https://github.com/ardhi/dobo)
 
 ## Installation
 
@@ -19,7 +19,7 @@ And enable the plugin by adding ```dobo```, ```dobo-knex``` and ```dobo-sqlite3`
 ## Documentations
 
 - [Config Object](wiki/CONFIG.md)
-- [Supported Drivers](wiki/SUPPORTED-DRIVERS.md)
+- [Supported Adapters](wiki/SUPPORTED-ADAPTERS.md)
 - [API](https://ardhi.github.io/dobo-sqlite3)
 - [Contributing](wiki/CONTRIBUTING.md)
 

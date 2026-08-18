@@ -1,4 +1,4 @@
-# Supported Drivers
+# Supported Adapters
 
 By default, [Knex](https://knexjs.org) support the following databases:
 
